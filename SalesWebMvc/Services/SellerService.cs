@@ -28,5 +28,18 @@ namespace SalesWebMvc.Services
             _context.Add(obj);
             _context.SaveChanges();
         }
+        
+        public Seller FindById (int id)
+        {
+            //lá no banco de dados, na tabela seller, encontre o seller com o id igual ao indicado na aplicação
+            return _context.Seller.FirstOrDefault(obj => obj.Id == id);
+        }
+        public void Remove(int id)
+        {
+            //criando uma variável que vai armazenar o id do seller a ser deletado e vai encaminhar pro dbset que irá enviar pro banco de dados a solicitação de deleção
+            var obj = _context.Seller.Find(id);
+            _context.Seller.Remove(obj);
+            _context.SaveChanges();
+        }
     }
 }
